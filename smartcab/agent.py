@@ -67,7 +67,7 @@ class LearningAgent(Agent):
         if location==destination:
             self.successes[-1]=1
 
-        
+
         #print "LearningAgent.update(): deadline = {}, inputs = {}, action = {}, reward = {}".format(deadline, inputs, action, reward)  # [debug]
 
     # argmax function return best reward action
@@ -90,8 +90,8 @@ def run():
     """Run the agent for a finite number of trials."""
     success=[]
     # Iterate through alpha and gamma to find the best combination
-    for alpha in range(0,100,25):
-        for gamma in range(0,100,25):
+    for alpha in range(0,100,5):
+        for gamma in range(0,100,5):
             # test current alhpa/gamma combination
             a=run_sim(alpha,gamma,0.005,False)
             success_rate = a.successes.count(1)
@@ -131,7 +131,7 @@ def run_sim(alpha,gamma,time_step,disp):
             sim = Simulator(e, update_delay=time_step, display=disp)  # create simulator (uses pygame when display=True, if available)
             # NOTE: To speed up simulation, reduce update_delay and/or set display=False
 
-            sim.run(n_trials=10)  # run for a specified number of trials
+            sim.run(n_trials=100)  # run for a specified number of trials
             return a
 
 if __name__ == '__main__':
